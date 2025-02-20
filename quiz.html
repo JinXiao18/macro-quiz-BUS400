@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Macroeconomics Quiz</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .question { margin-bottom: 20px; }
+        .result { display: none; font-weight: bold; margin-top: 10px; }
+        .correct { color: green; }
+        .incorrect { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Macroeconomics Self-Assessment Quiz</h1>
+    
+    <!-- Multiple Choice Question -->
+    <div class="question">
+        <p><strong>1. If a country’s nominal GDP is $2 trillion and the GDP deflator is 125, what is the real GDP?</strong></p>
+        <input type="text" id="q1" placeholder="Enter your answer"> <button onclick="checkQ1()">Submit</button>
+        <p id="result1" class="result"></p>
+    </div>
+
+    <!-- True/False Question -->
+    <div class="question">
+        <p><strong>2. A high unemployment rate always means a negative GDP gap.</strong></p>
+        <button onclick="checkQ2(true)">True</button>
+        <button onclick="checkQ2(false)">False</button>
+        <p id="result2" class="result"></p>
+    </div>
+
+    <!-- Multiple Choice Question -->
+    <div class="question">
+        <p><strong>3. What phase of the business cycle is characterized by rising GDP and employment?</strong></p>
+        <select id="q3">
+            <option value="">Select an answer</option>
+            <option value="peak">Peak</option>
+            <option value="recession">Recession</option>
+            <option value="trough">Trough</option>
+            <option value="expansion">Expansion</option>
+        </select>
+        <button onclick="checkQ3()">Submit</button>
+        <p id="result3" class="result"></p>
+    </div>
+
+    <script>
+        function checkQ1() {
+            let answer = document.getElementById("q1").value;
+            let realGDP = (2000000 / 125) * 100; // GDP formula: Real GDP = (Nominal GDP / GDP Deflator) * 100
+            let result = document.getElementById("result1");
+            if (Math.abs(answer - realGDP) < 1) {
+                result.textContent = "Correct! The real GDP is " + realGDP.toFixed(2);
+                result.className = "result correct";
+            } else {
+                result.textContent = "Incorrect. The correct answer is " + realGDP.toFixed(2);
+                result.className = "result incorrect";
+            }
+            result.style.display = "block";
+        }
+        
+        function checkQ2(choice) {
+            let result = document.getElementById("result2");
+            if (choice === true) {
+                result.textContent = "Correct! A high unemployment rate typically corresponds to a negative GDP gap.";
+                result.className = "result correct";
+            } else {
+                result.textContent = "Incorrect. A high unemployment rate generally means GDP is below potential (negative GDP gap).";
+                result.className = "result incorrect";
+            }
+            result.style.display = "block";
+        }
+        
+        function checkQ3() {
+            let answer = document.getElementById("q3").value;
+            let result = document.getElementById("result3");
+            if (answer === "expansion") {
+                result.textContent = "Correct! The expansion phase is characterized by rising GDP and employment.";
+                result.className = "result correct";
+            } else {
+                result.textContent = "Incorrect. The correct answer is 'Expansion'.";
+                result.className = "result incorrect";
+            }
+            result.style.display = "block";
+        }
+    </script>
+</body>
+</html>

@@ -15,14 +15,14 @@
 <body>
     <h1>Macroeconomics Self-Assessment Quiz</h1>
     
-    <!-- Multiple Choice Question -->
+    <!-- GDP Calculation Question -->
     <div class="question">
         <p><strong>1. If a country’s nominal GDP is $2 trillion and the GDP deflator is 125, what is the real GDP?</strong></p>
         <input type="text" id="q1" placeholder="Enter your answer"> <button onclick="checkQ1()">Submit</button>
         <p id="result1" class="result"></p>
     </div>
 
-    <!-- True/False Question -->
+    <!-- Business Cycle Question -->
     <div class="question">
         <p><strong>2. A high unemployment rate always means a negative GDP gap.</strong></p>
         <button onclick="checkQ2(true)">True</button>
@@ -30,7 +30,7 @@
         <p id="result2" class="result"></p>
     </div>
 
-    <!-- Multiple Choice Question -->
+    <!-- Business Cycle Phases -->
     <div class="question">
         <p><strong>3. What phase of the business cycle is characterized by rising GDP and employment?</strong></p>
         <select id="q3">
@@ -44,10 +44,30 @@
         <p id="result3" class="result"></p>
     </div>
 
+    <!-- Inflation Calculation -->
+    <div class="question">
+        <p><strong>4. If the Consumer Price Index (CPI) was 110 last year and is 121 this year, what is the inflation rate?</strong></p>
+        <input type="text" id="q4" placeholder="Enter your answer"> <button onclick="checkQ4()">Submit</button>
+        <p id="result4" class="result"></p>
+    </div>
+
+    <!-- Supply and Demand -->
+    <div class="question">
+        <p><strong>5. A decrease in supply, all else equal, will cause the equilibrium price to:</strong></p>
+        <select id="q5">
+            <option value="">Select an answer</option>
+            <option value="increase">Increase</option>
+            <option value="decrease">Decrease</option>
+            <option value="remain the same">Remain the same</option>
+        </select>
+        <button onclick="checkQ5()">Submit</button>
+        <p id="result5" class="result"></p>
+    </div>
+
     <script>
         function checkQ1() {
             let answer = document.getElementById("q1").value;
-            let realGDP = (2000000 / 125) * 100; // GDP formula: Real GDP = (Nominal GDP / GDP Deflator) * 100
+            let realGDP = (2000000 / 125) * 100;
             let result = document.getElementById("result1");
             if (Math.abs(answer - realGDP) < 1) {
                 result.textContent = "Correct! The real GDP is " + realGDP.toFixed(2);
@@ -58,7 +78,7 @@
             }
             result.style.display = "block";
         }
-        
+
         function checkQ2(choice) {
             let result = document.getElementById("result2");
             if (choice === true) {
@@ -70,7 +90,7 @@
             }
             result.style.display = "block";
         }
-        
+
         function checkQ3() {
             let answer = document.getElementById("q3").value;
             let result = document.getElementById("result3");
@@ -79,6 +99,20 @@
                 result.className = "result correct";
             } else {
                 result.textContent = "Incorrect. The correct answer is 'Expansion'.";
+                result.className = "result incorrect";
+            }
+            result.style.display = "block";
+        }
+
+        function checkQ4() {
+            let answer = document.getElementById("q4").value;
+            let inflationRate = ((121 - 110) / 110) * 100;
+            let result = document.getElementById("result4");
+            if (Math.abs(answer - inflationRate) < 1) {
+                result.textContent = "Correct! The inflation rate is " + inflationRate.toFixed(2) + "%";
+                result.className = "result correct";
+            } else {
+                result.textContent = "Incorrect. The correct answer is " + inflationRate.toFixed(2) + "%";
                 result.className = "result incorrect";
             }
             result.style.display = "block";
